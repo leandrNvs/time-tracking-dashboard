@@ -9,7 +9,7 @@ export default function Card({ title, current, previous, bg }) {
         <div className="card__topo">
           <h2>{title}</h2>
           <button>
-            <img src={ellipsis} alt="" />
+            <img src={ellipsis} alt="more" />
           </button>
         </div>
         <div className="card__content">
