@@ -1,0 +1,239 @@
+$bg-images: (
+  "work": hsl(15, 100%, 70%),
+  "play": hsl(195, 74%, 62%),
+  "study": hsl(348, 100%, 68%),
+  "exercise": hsl(145, 58%, 55%),
+  "social": hsl(264, 64%, 52%),
+  "self-care": hsl(43, 84%, 65%),
+);
+
+$border: 1rem;
+
+* {
+  margin: 0;
+  padding: 0;
+  outline: none;
+  text-decoration: none;
+  list-style-type: none;
+  box-sizing: border-box;
+  font-family: "Rubik", sans-serif;
+}
+
+button {
+  cursor: pointer;
+}
+
+:root {
+  --Blue: hsl(246, 80%, 60%);
+  --Very-dark-blue: hsl(226, 43%, 10%);
+  --Dark-blue: hsl(235, 46%, 20%);
+  --Desaturated-blue: hsl(235, 45%, 61%);
+  --Pale-Blue: hsl(236, 100%, 87%);
+}
+
+body {
+  min-height: 100vh;
+  background-color: var(--Very-dark-blue);
+  display: grid;
+  place-items: center;
+}
+
+.main {
+  display: grid;
+  gap: 1.5rem;
+  margin: 1rem;
+}
+
+.profile {
+  border-radius: $border;
+  overflow: hidden;
+  background-color: var(--Dark-blue);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+
+  &__topo {
+    background-color: var(--Blue);
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    padding: 1.5rem;
+    border-radius: 0 0 $border $border;
+
+    img {
+      width: 3.5rem;
+      border: 3px solid #fff;
+      border-radius: 50%;
+    }
+
+    h1 {
+      color: var(--Pale-Blue);
+
+      br {
+        display: none;
+      }
+
+      span {
+        &:first-child {
+          font-size: 0.813rem;
+          font-weight: 300;
+          display: block;
+          margin-bottom: -5px;
+        }
+
+        &:last-child {
+          font-size: 1.5rem;
+          font-weight: 400;
+        }
+      }
+    }
+  }
+
+  &__bottom {
+    padding: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+
+    button {
+      background-color: transparent;
+      color: var(--Desaturated-blue);
+      border: 0;
+
+      &:hover {
+        color: #ccc;
+      }
+
+      &.active {
+        color: #fff;
+      }
+    }
+  }
+}
+
+@each $key, $value in $bg-images {
+  $url: "./assets/images/icon-#{$key}.svg";
+
+  .bg-#{$key} {
+    background: $value url(#{$url}) no-repeat 95% top;
+  }
+}
+
+.card {
+  padding-top: 2rem;
+  border-radius: $border;
+  overflow: hidden;
+  background-size: 4rem;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+
+  &__body {
+    background-color: var(--Dark-blue);
+    border-radius: $border $border 0 0;
+    padding: 1.5rem;
+    color: #fff;
+    cursor: pointer;
+    transition: 0.3s;
+    position: relative;
+    height: 100%;
+
+    &:hover {
+      background-color: var(--Desaturated-blue);
+    }
+  }
+
+  &__topo {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+
+    h2 {
+      font-size: 0.9rem;
+      font-weight: 400;
+    }
+
+    button {
+      background-color: transparent;
+      border: 0;
+
+      img {
+        width: 1rem;
+      }
+    }
+  }
+
+  &__content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    &-time {
+      font-size: 2rem;
+      font-weight: 300;
+    }
+
+    &-when {
+      font-size: 0.825rem;
+      font-weight: 300;
+      color: var(--Pale-Blue);
+    }
+  }
+}
+
+@media (min-width: 800px) {
+  .main {
+    grid-template-columns: repeat(4, 200px);
+    grid-template-rows: repeat(2, auto);
+  }
+
+  .profile {
+    grid-row: 1 / 3;
+    &__topo {
+      flex-direction: column;
+      align-items: start;
+      gap: 2rem;
+
+      h1 {
+        margin-bottom: 3rem;
+
+        br {
+          display: block;
+        }
+
+        span {
+          &:first-child {
+            margin-bottom: 0;
+          }
+
+          &:last-child {
+            font-size: 2rem;
+          }
+        }
+      }
+    }
+
+    &__bottom {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1.5rem;
+    }
+  }
+
+  .card {
+    &__topo {
+      margin-bottom: 1rem;
+    }
+
+    &__content {
+      flex-direction: column;
+      align-items: flex-start;
+
+      &-time {
+        font-size: 3rem;
+      }
+
+      &-when {
+        font-size: 0.825rem;
+        font-weight: 300;
+        color: var(--Pale-Blue);
+      }
+    }
+  }
+}
